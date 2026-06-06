@@ -9,9 +9,9 @@ function TabBar() {
     return(
         <div>
             <div>
-                <button onClick={() => setActiveTab("Connect")}>Connect</button>
-                <button onClick={() => setActiveTab("Raw")}>Raw Data</button>
-                <button onClick={() => setActiveTab("Graphic")}>Graphical Data</button>
+                <button className="tabBtn" onClick={() => setActiveTab("Connect")}>Connect</button>
+                <button className="tabBtn" onClick={() => setActiveTab("Raw")}>Raw Data</button>
+                <button className="tabBtn" onClick={() => setActiveTab("Graphic")}>Graphical Data</button>
             </div>
             <div>
                 {activeTab === 'Connect' && <ConnectContent />}
