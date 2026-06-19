@@ -1,16 +1,19 @@
 package main
 
 import (
-	"net/http"
-
 	"fmt"
+	"net/http"
+	"strings"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/ninja6734/FastVarLogger/modules/UDPConnectionCodec"
+	"github.com/ninja6734/FastVarLogger/modules/networker"
 )
 
 type ConnectRequest struct {
-	IP string `json:"ip"`
+	TestData string `json:"testData"`
+	Port     int    `json:"port"`
 }
 
 func main() {
@@ -39,10 +42,15 @@ func main() {
 			return
 		}
 
-		// Hier kannst du die Logik implementieren, um eine Verbindung zum Roboter herzustellen
-		// Zum Beispiel: err := connectToRobot(req.IP)
+		fmt.Println("Received connection request for IP:", req.TestData, "port:", req.Port)
 
-		fmt.Println("Connecting to: ", req.IP)
+		port := req.Port
+		if port == 0 {
+			port = 9999
+		}
+		testData := req.TestData
+
+		go networker.ReadBuffer(port, UDPConnectionCodec.ReadUDPData, strings.Split(testData, ","))
 
 		c.JSON(http.StatusOK, gin.H{"message": "Verbindung zum Roboter hergestellt"})
 	})
