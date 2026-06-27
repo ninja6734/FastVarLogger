@@ -23,5 +23,3 @@ Ein Beispiel für eine UDP-Datenübertragung könnte wie folgt aussehen:
 *   End Codec: `\x00\x00`
 
 Der Empfänger kann dann das Paket entpacken und die Daten lesen.
-
-Ich hoffe, diese Dokumentation hilft bei der Verständnis des UDP-Codecs.

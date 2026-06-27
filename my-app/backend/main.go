@@ -42,7 +42,7 @@ func main() {
 			return
 		}
 
-		fmt.Println("Received connection request for IP:", req.TestData, "port:", req.Port)
+		fmt.Println("Received connection request for Port:", req.Port, "with test data:", req.TestData)
 
 		port := req.Port
 		if port == 0 {
